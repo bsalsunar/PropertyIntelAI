@@ -2,7 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from openai import OpenAI
-from knowledge_base import analyze_against_knowledge_base
+from backend.knowledge_base import analyze_against_knowledge_base
 
 load_dotenv()
 
