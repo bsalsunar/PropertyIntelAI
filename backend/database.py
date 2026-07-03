@@ -1,12 +1,10 @@
 import sqlite3
 import json
 from datetime import datetime
-
-DB_PATH = "realestate.db"
-
+from backend.config import DB_PATH
 
 def create_tables():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(str(DB_PATH))
     cursor = conn.cursor()
 
     cursor.execute("""

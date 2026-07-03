@@ -1,12 +1,10 @@
 import re
 import pandas as pd
-
-
-KNOWLEDGE_BASE_PATH = "data/processed/property_knowledge_base.csv"
+from backend.config import PROCESSED_DATA_PATH
 
 
 def load_knowledge_base():
-    return pd.read_csv(KNOWLEDGE_BASE_PATH)
+    return pd.read_csv(PROCESSED_DATA_PATH)
 
 
 def extract_listing_features(listing_text: str) -> dict:

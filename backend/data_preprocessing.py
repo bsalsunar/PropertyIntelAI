@@ -1,10 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-
-
-RAW_DATA_PATH = "data/raw/properties.csv"
-PROCESSED_DATA_PATH = "data/processed/property_knowledge_base.csv"
+from config import RAW_DATA_PATH, PROCESSED_DATA_PATH
 
 
 def load_data(path: str) -> pd.DataFrame:
