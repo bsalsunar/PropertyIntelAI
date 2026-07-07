@@ -1,249 +1,385 @@
-PropertyIntelAI: AI-Powered Property Listing Quality & SEO Analyzer
-Overview
-PropertyIntelAI is an AI-powered web application that evaluates the quality of real estate property listings using a structured real estate knowledge base and a Large Language Model (LLM). The application combines data engineering, knowledge-based analysis, and AI reasoning to help users create higher-quality, more complete, and SEO-friendly property listings.
-Unlike traditional AI applications that only rewrite text, PropertyIntelAI first analyzes a listing against a structured knowledge base built from historical real estate data. The AI then uses these structured insights to generate meaningful recommendations, quality scores, and SEO improvements.
-Frontend UI 
+# 🏠 PropertyIntelAI
 
-Analyzed Listing and FastAPI
+**AI-Powered Property Listing Quality & SEO Analyzer Using a Structured Real Estate Knowledge Base**
 
+## Overview
 
+PropertyIntelAI is an end-to-end AI application that evaluates the quality and SEO readiness of real estate listings. The project combines **data engineering**, a **structured knowledge base**, and **Large Language Models (LLMs)** to provide explainable, actionable feedback for property listings.
 
+Unlike traditional AI applications that only generate text, PropertyIntelAI first analyzes a listing against a structured real estate knowledge base built from historical housing data. The AI then uses this structured analysis to generate quality scores, SEO recommendations, and listing improvements.
 
-GITHUB Link:  https://github.com/bsalsunar/PropertyIntelAI/tree/main
-Problem Statement
-Property listings often contain incomplete or inconsistent information that can reduce buyer engagement and search visibility. Missing details such as square footage, number of bathrooms, amenities, neighborhood information, or property features make listings less attractive and more difficult to discover.
-The objective of this project is to build an intelligent system that evaluates listing quality, identifies missing information, recommends SEO improvements, and generates an optimized listing.
+---
 
-Objectives
-The application aims to:
-Build a structured knowledge base from historical real estate data.
-Analyze new property listings against the knowledge base.
-Measure listing completeness.
-Identify missing information.
-Evaluate SEO quality.
-Generate explainable AI recommendations.
-Produce an improved, SEO-friendly listing.
+# Problem Statement
 
-Data Collection
-Dataset
-The project uses the Ames Housing Dataset, a publicly available dataset containing detailed residential property information.
-The dataset includes information such as:
-Property characteristics
-Neighborhood
-Building style
-Living area
-Lot size
-Bedrooms
-Bathrooms
-Garage details
-Basement information
-Heating
-Exterior quality
-Amenities
-Sale price
-This dataset serves as the foundation for building the application's knowledge base.
+Many real estate listings fail to attract buyers because they:
 
-Data Engineering
-The raw dataset is transformed into a structured knowledge base through several preprocessing steps.
-Data Cleaning
-The preprocessing pipeline performs:
-Standardized column names
-Missing value handling
-Data normalization
-Feature selection
-Removal of inconsistent records
-Feature Engineering
-Additional features are generated to improve downstream analysis, including:
-Property type
-Living area
-Bathroom count
-Bedroom count
-Amenity count
-Garage information
-Basement availability
-Completeness score
-Recommended SEO keywords
-Property quality label
+* Omit important property details
+* Have poor or incomplete descriptions
+* Are not optimized for search engines
+* Lack consistency and readability
+* Miss key selling points
+
+PropertyIntelAI helps improve listing quality by identifying missing information and providing AI-powered recommendations.
+
+---
+
+# Objectives
+
+* Build a structured real estate knowledge base from historical housing data.
+* Evaluate new property listings against the knowledge base.
+* Generate explainable listing quality and SEO scores.
+* Recommend improvements using AI.
+* Provide an easy-to-use web interface for users.
+
+---
+
+# Features
+
+## Data Collection
+
+The application uses the **Ames Housing Dataset** as the primary data source.
+
+The dataset includes:
+
+* Property details
+* Neighborhood information
+* Property quality
+* Lot size
+* Living area
+* Bedrooms
+* Bathrooms
+* Garage information
+* Basement information
+* Sale prices
+* Amenities
+
+---
+
+## Data Engineering
+
+The raw dataset is cleaned and transformed into a structured knowledge base.
+
+### Data Cleaning
+
+* Standardize column names
+* Handle missing values
+* Normalize categorical values
+* Remove inconsistencies
+
+### Feature Engineering
+
+The preprocessing pipeline creates features such as:
+
+* Property type
+* Living area
+* Number of bedrooms
+* Number of bathrooms
+* Garage capacity
+* Amenity count
+* Property quality label
+* Completeness score
+* Recommended SEO keywords
+
 The processed knowledge base is stored as:
+
+```text
 data/processed/property_knowledge_base.csv
+```
 
+---
 
-Knowledge Base
-Instead of using the raw housing dataset directly, the project creates a structured knowledge base representing what a complete property listing should contain.
-The knowledge base contains:
-Property characteristics
-Amenities
-Quality indicators
-Property features
-SEO-related attributes
-Engineered features
-This structured data is used to evaluate new listings before invoking the AI model.
+# Knowledge Base
 
-AI Workflow
-The AI workflow consists of multiple stages.
-Step 1: User Input
-The user enters a property listing through the Streamlit interface.
-Example:
-Beautiful 3-bedroom home in Ames with updated kitchen and spacious backyard.
+Instead of analyzing listings directly with an LLM, PropertyIntelAI first compares user listings against a structured knowledge base.
 
-Step 2: Knowledge Base Analysis
-The system extracts structured information from the listing, including:
-Price
-Bedrooms
-Bathrooms
-Square footage
-Garage
-Basement
-Amenities
-Location
-The extracted features are compared against the knowledge base.
-The system calculates:
-Completeness score
-Missing information
-Feature coverage
+The knowledge base contains information about:
 
-Step 3: AI Analysis
-The knowledge base analysis is provided as structured context to the Large Language Model.
-The AI generates:
-Listing Quality Score
-SEO Score
-Missing information summary
-Explanation of scores
-SEO keyword recommendations
-Improvement suggestions
-Optimized property listing
-This approach ensures that the AI reasons using structured data instead of relying solely on free-text generation.
+* Property characteristics
+* Amenities
+* Property quality
+* Neighborhoods
+* Listing completeness
+* Common SEO keywords
 
-Backend
-The backend is implemented using FastAPI.
-The backend is responsible for:
-Receiving listing data
-Running knowledge base analysis
-Calling the AI engine
-Returning structured JSON responses
-Example endpoints:
-GET /
-GET /health
-POST /analyze
+This enables explainable and consistent evaluations.
 
-User Interface
-The application uses Streamlit to provide a simple web interface.
-Users can:
-Paste a property listing
-Submit the listing for analysis
-View quality score
-View SEO score
-Review missing information
-Read AI explanations
-Receive SEO keyword suggestions
-View an improved listing
+---
 
-Database
-SQLite is used to store analysis results.
-Stored information includes:
-Listing text
-Quality score
-SEO score
-Completeness score
-Missing fields
-AI explanations
-SEO keywords
-Improved listing
-Timestamp
+# AI Workflow
 
-Technology Stack
-Programming Language
-Python
-Data Engineering
-Pandas
-NumPy
-Database
-SQLite
-Backend
-FastAPI
-Frontend
-Streamlit
-Artificial Intelligence
-OpenAI API
-Version Control
-Git
-GitHub
+### Step 1 – User Input
 
-System Architecture
-Raw Real Estate Dataset
+The user submits a property listing.
+
+### Step 2 – Feature Extraction
+
+The system extracts information such as:
+
+* Price
+* Bedrooms
+* Bathrooms
+* Square footage
+* Garage
+* Basement
+* Amenities
+* Location
+
+### Step 3 – Knowledge Base Comparison
+
+The listing is compared against the structured knowledge base.
+
+The application identifies:
+
+* Missing fields
+* Completeness score
+* Typical characteristics of high-quality listings
+
+### Step 4 – AI Analysis
+
+The knowledge base analysis is sent to an LLM.
+
+The LLM generates:
+
+* Listing Quality Score
+* SEO Score
+* Explanation of the scores
+* Missing information
+* SEO keyword recommendations
+* Improvement suggestions
+* Optimized listing description
+
+---
+
+# System Architecture
+
+```text
+Raw Housing Dataset
         │
         ▼
 Data Cleaning & Feature Engineering
         │
         ▼
 Property Knowledge Base
+(CSV + SQLite)
         │
         ▼
 Knowledge Base Analyzer
         │
         ▼
-Large Language Model
+OpenAI LLM
         │
         ▼
 FastAPI Backend
         │
         ▼
 Streamlit User Interface
+```
 
+---
 
-Project Structure
+# Technology Stack
+
+### Programming Language
+
+* Python
+
+### Data Engineering
+
+* Pandas
+* NumPy
+
+### Database
+
+* SQLite
+
+### Backend
+
+* FastAPI
+
+### Frontend
+
+* Streamlit
+
+### AI
+
+* OpenAI API
+
+### Version Control
+
+* Git
+* GitHub
+
+---
+
+# Project Structure
+
+```text
 PropertyIntelAI/
+│
+├── backend/
+│   ├── ai_engine.py
+│   ├── config.py
+│   ├── data_preprocessing.py
+│   ├── database.py
+│   ├── knowledge_base.py
+│   └── main.py
+│
+├── frontend/
+│   └── app.py
+│
+├── data/
+│   ├── raw/
+│   │   └── properties.csv
+│   ├── processed/
+│   │   └── property_knowledge_base.csv
+│   └── realestate.db
+│
+├── docs/
+├── notebooks/
+├── tests/
+├── screenshots/
+│
+├── requirements.txt
+├── README.md
+└── .env.example
+```
 
-backend/
-    ai_engine.py
-    config.py
-    data_preprocessing.py
-    database.py
-    knowledge_base.py
-    main.py
+---
 
-frontend/
-    app.py
+# API Endpoints
 
-data/
-    raw/
-        properties.csv
+### GET /
 
-    processed/
-        property_knowledge_base.csv
+Returns the API status.
 
-    realestate.db
+### GET /health
 
-docs/
+Checks whether the API is running.
 
-README.md
+### POST /analyze
 
-requirements.txt
+Accepts a property listing and returns:
 
+* Quality Score
+* SEO Score
+* Completeness Score
+* Missing Fields
+* AI Explanation
+* SEO Keywords
+* Improvement Suggestions
+* Optimized Listing
 
-Results
-The application returns:
-Listing Quality Score
-SEO Score
-Completeness Score
-Missing Fields
-AI Explanation
-SEO Keyword Recommendations
-Improved Property Listing
-These outputs help users improve listing quality, increase search visibility, and create more informative property advertisements.
+Example request:
 
-Future Enhancements
-Future improvements could include:
-Vector database for semantic property search
-Retrieval-Augmented Generation (RAG)
-Image quality analysis using computer vision
-Duplicate listing detection
-Similar property recommendations
-Property price estimation using machine learning
-Cloud deployment with Docker and AWS
-User authentication and listing history
+```json
+{
+  "listing_text": "Beautiful 3-bedroom home in Ames with updated kitchen and attached garage."
+}
+```
 
-Conclusion
-PropertyIntelAI demonstrates an end-to-end AI application that combines data engineering, structured knowledge representation, and large language models to solve a practical real estate problem. By grounding AI recommendations in a curated knowledge base, the system provides more reliable, explainable, and actionable feedback than a text-generation-only approach.
+---
 
+# User Interface
 
+The Streamlit application allows users to:
+
+* Paste a property listing
+* Analyze listing quality
+* View completeness score
+* View SEO score
+* Identify missing information
+* Read AI explanations
+* View suggested SEO keywords
+* Generate an optimized listing
+
+---
+
+# Installation
+
+## Clone the repository
+
+```bash
+git clone https://github.com/<your-username>/PropertyIntelAI.git
+cd PropertyIntelAI
+```
+
+## Create a virtual environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+## Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Configure environment variables
+
+Create a `.env` file:
+
+```text
+OPENAI_API_KEY=your_openai_api_key
+```
+
+---
+
+# Running the Application
+
+## Build the knowledge base
+
+```bash
+python backend/data_preprocessing.py
+```
+
+## Start the FastAPI backend
+
+```bash
+uvicorn backend.main:app --reload
+```
+
+## Launch the Streamlit application
+
+```bash
+streamlit run frontend/app.py
+```
+
+---
+
+# Future Enhancements
+
+* Retrieval-Augmented Generation (RAG)
+* Vector database for semantic property search
+* Image quality analysis
+* Duplicate listing detection
+* Property price estimation
+* Similar property recommendations
+* Cloud deployment
+* User authentication
+* PDF report generation
+* Interactive analytics dashboard
+
+---
+
+# Skills Demonstrated
+
+* Data Collection
+* Data Cleaning
+* Feature Engineering
+* Knowledge Base Construction
+* AI Prompt Engineering
+* LLM Integration
+* FastAPI Development
+* Streamlit Development
+* SQLite Database Design
+* Git & GitHub
+* End-to-End AI Application Development
+
+---
+
+# License
+
+This project was developed for educational purposes and as part of an AI-powered real estate application portfolio.
